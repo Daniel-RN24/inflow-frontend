@@ -144,9 +144,7 @@ export default function DeleteTransactionDialog({ transaction, onDeleted }) {
 
         {msg && <Alerta alerta={alerta} />}
 
-        <p className="text-xs text-muted-foreground italic">
-          Esta transacción se eliminará de todos tus reportes y estadísticas.
-        </p>
+      
       </DialogContent>
     </Dialog>
   );

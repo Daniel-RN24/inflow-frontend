@@ -28,7 +28,7 @@ import { formatCurrency } from "@/lib/format/currency";
 
 function TransactionForm({ transaction, conceptsSelect, accountsSelect, onCancel, onSaved }) {
   const [descripcion, setDescripcion] = useState(transaction?.descripcion || "");
-  const [valor, setValor] = useState(transaction?.valor || 0);
+  const [valor, setValor] = useState(transaction?.valor || null);
   const [cuenta, setCuenta] = useState(
     transaction?.cuentas_id != null ? String(transaction.cuentas_id) : "",
   );
@@ -121,7 +121,7 @@ function TransactionForm({ transaction, conceptsSelect, accountsSelect, onCancel
             onClick={() => selectTipo("Ingreso")}
             className={`flex cursor-pointer items-center justify-center gap-2 rounded-lg px-3 py-2.5 text-sm font-semibold transition-all ${
               tipoTransaccion === "Ingreso"
-                ? "bg-emerald-500 text-white shadow-sm"
+                ? "bg-emerald-700 text-white shadow-sm"
                 : "text-muted-foreground hover:bg-background hover:text-foreground"
             }`}
           >
@@ -326,8 +326,6 @@ export default function TransactionFormDialog({ transaction, onSaved }) {
       >
         {/* Header */}
         <header className="relative flex shrink-0 items-center justify-between gap-4 overflow-hidden bg-gradient-brand px-6 py-5">
-          <div className="pointer-events-none absolute -top-16 -left-10 size-48 rounded-full bg-white/15 blur-3xl" />
-          <div className="pointer-events-none absolute -right-8 -bottom-16 size-40 rounded-full bg-cyan-300/30 blur-3xl" />
           <div className="relative flex items-center gap-3">
             <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-white/15 ring-1 ring-white/20">
               <Receipt className="size-5" />
