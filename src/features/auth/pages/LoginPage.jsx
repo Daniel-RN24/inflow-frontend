@@ -52,14 +52,14 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="p-6 sm:p-8">
+    <div>
       <AuthFormHeader
         icon={LogIn}
         title="Inicia sesión"
         description="Accede a tu panel para gestionar tus finanzas."
       />
 
-      <CardContent>
+      <CardContent className="p-7">
         <Alerta alerta={alerta} />
 
         <form onSubmit={handleSubmit} className="mt-4 grid gap-4">
@@ -98,7 +98,7 @@ export default function LoginPage() {
         </form>
       </CardContent>
 
-      <CardFooter className="flex-col gap-3 px-0 pb-0">
+      <CardFooter className="flex-col gap-3 ">
         <div className="flex w-full items-center gap-3 text-xs text-muted-foreground">
           <div className="h-px flex-1 bg-border" />
           <span>o</span>

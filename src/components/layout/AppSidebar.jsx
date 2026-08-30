@@ -17,10 +17,10 @@ import {
   FolderTree,
   Wallet,
   ChevronDown,
-  CircleDollarSignIcon,
   LogOutIcon,
   CircleUser,
   LayoutDashboard,
+  ChartLine,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -61,12 +61,12 @@ export default function AppSidebar() {
               className="cursor-pointer text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
               render={
                 <Link to="/admin" onClick={handleNavClick}>
-                  <div className="flex aspect-square size-9 items-center justify-center rounded-xl bg-gradient-brand text-white ring-1 ring-white/10">
-                    <CircleDollarSignIcon className="size-5" />
+                  <div className="flex size-9 items-center justify-center rounded-lg bg-gradient-brand text-white ring-1 ring-white/10">
+                    <ChartLine className="size-5" />
                   </div>
                   <div className="grid flex-1 text-left text-sm leading-tight group-data-[collapsible=icon]:hidden">
                     <span className="truncate text-base font-semibold text-sidebar-foreground">
-                      Fintrack
+                      Inflow
                     </span>
                     <span className="truncate text-xs text-sidebar-foreground/55">
                       Panel admin
