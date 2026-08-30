@@ -53,5 +53,5 @@ export function useTransactionsData() {
     setReloadCount((count) => count + 1);
   }, []);
 
-  return { transactions, meta, stats, page, setPage, loading, error, refresh };
+  return { transactions, setTransactions, meta, stats, page, setPage, loading, error, refresh };
 }

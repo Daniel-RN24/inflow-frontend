@@ -12,6 +12,24 @@ export async function listTransactions({ page = 1, limit = 10 } = {}) {
   return data;
 }
 
+export async function filterTransactions(page = 1, limit = 10, filters) {
+  const params = new URLSearchParams({page, limit})
+  if (filters.busqueda) params.set("search", filters.busqueda);
+  if (filters.tipo && filters.tipo !== "todos") params.set("type", filters.tipo);
+  if (filters.categoria) params.set("category", filters.categoria);
+  if (filters.fechaDesde) params.set("fromDate", filters.fechaDesde);
+  if (filters.fechaHasta) params.set("untilDate", filters.fechaHasta)
+  const data = await apiRequest(
+    `/transacciones?${params.toString()}`
+  )
+
+  if (data.success === false){
+    throw new ApiError(data.msg ?? "No se pudieron obtener las transacciones")
+  }
+
+  return data
+}
+
 export async function createTransaction(payload) {
   const data = await apiRequest("/transacciones", {
     method: "POST",
@@ -56,4 +74,8 @@ export function listConcepts() {
 
 export function listAccounts() {
   return apiRequest("/cuentas").then((data) => data.results ?? []);
+}
+
+export function listCategories(){
+  return apiRequest("/categorias").then((data) => data.results ?? [])
 }

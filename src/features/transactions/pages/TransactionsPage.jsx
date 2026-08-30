@@ -13,7 +13,7 @@ import DeleteTransactionDialog from "@/features/transactions/components/DeleteTr
 
 export default function TransactionsPage() {
   const { mode, selected, openEdit, openDelete } = useTransactions();
-  const { transactions, meta, stats, page, setPage, loading, error, refresh } =
+  const { setTransactions, transactions, meta, stats, page, setPage, loading, error, refresh } =
     useTransactionsData();
 
   return (
@@ -31,7 +31,7 @@ export default function TransactionsPage() {
       {error && <Alerta alerta={{ msg: error.message, error: true }} />}
 
       {/* Filtros */}
-      <FilterBar />
+      <FilterBar setTransactions={setTransactions} page={page} />
 
       {/* Resumen */}
       <SummaryCardsTransaction

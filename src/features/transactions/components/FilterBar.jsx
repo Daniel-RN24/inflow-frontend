@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Calendar, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -11,8 +11,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { filterTransactions, listCategories } from "../api/transactionsApi";
 
-export default function FilterBar() {
+export default function FilterBar({ setTransactions, page }) {
+  // Options - Select
+  const [optionsCategories, setOptionsCategories] = useState([]);
+
   const [tipo, setTipo] = useState("todos");
   const [busqueda, setBusqueda] = useState("");
   const [categoria, setCategoria] = useState("");
@@ -28,6 +32,28 @@ export default function FilterBar() {
     setFechaDesde("");
     setFechaHasta("");
   };
+
+  useEffect(() => {
+    async function getCategories() {
+      setOptionsCategories(await listCategories());
+    }
+    getCategories()
+  }, []);
+
+  useEffect(() => {
+    const confirmFilter = async () => {
+      const dataFiltered = await filterTransactions(page, 10, {
+        busqueda,
+        categoria,
+        fechaDesde,
+        fechaHasta,
+        tipo,
+      });
+      setTransactions(dataFiltered.data);
+    };
+
+    confirmFilter();
+  }, [tipo, busqueda, categoria, orden, fechaDesde, fechaHasta]);
 
   return (
     <Card className="mb-6 p-4 shadow-sm">
@@ -62,33 +88,23 @@ export default function FilterBar() {
         </div>
 
         {/* Categoría */}
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-5">
           <Select value={categoria || null} onValueChange={setCategoria}>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Categoría" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="salario">Salario</SelectItem>
-              <SelectItem value="freelance">Freelance</SelectItem>
-              <SelectItem value="alimentacion">Alimentación</SelectItem>
-              <SelectItem value="servicios">Servicios</SelectItem>
+              <SelectItem value="" >Todos</SelectItem>
+              {optionsCategories.map(cat => {
+                return(
+                <SelectItem key={cat.id} value={cat.id}> {cat.nombre} </SelectItem>
+                )
+              })}
+           
             </SelectContent>
           </Select>
         </div>
-
-        {/* Orden */}
-        <div className="lg:col-span-3">
-          <Select value={orden || null} onValueChange={setOrden}>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Ordenar por" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="fecha-desc">Fecha (Desc)</SelectItem>
-              <SelectItem value="monto-max">Monto (Max)</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
+      
         {/* Fechas */}
         <div className="sm:col-span-2 lg:col-span-12">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
