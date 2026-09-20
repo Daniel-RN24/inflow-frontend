@@ -68,14 +68,17 @@ export async function deleteTransaction(id) {
   return data;
 }
 
-export function listConcepts() {
-  return apiRequest("/conceptos").then((data) => data.results ?? []);
+export async function listConcepts() {
+  const data = await apiRequest("/conceptos");
+  return data.results ?? [];
 }
 
-export function listAccounts() {
-  return apiRequest("/cuentas").then((data) => data.results ?? []);
+export async function listAccounts() {
+  const data = await apiRequest("/cuentas");
+  return data.results ?? [];
 }
 
-export function listCategories(){
-  return apiRequest("/categorias").then((data) => data.results ?? [])
+export async function listCategories(){
+  const data = await apiRequest("/categorias");
+  return data.results ?? [];
 }
