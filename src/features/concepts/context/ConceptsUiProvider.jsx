@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from "react";
 import { ConceptsUiContext } from "./ConceptsUiContext";
 
-const ConceptsUiProvider = ({children}) => {
+const ConceptsUiProvider = ({ children }) => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(null);
   const [mode, setMode] = useState(null);
@@ -30,17 +30,16 @@ const ConceptsUiProvider = ({children}) => {
     setSelected(null);
   }, []);
 
-  const value = useMemo(() => {
-    {
-      (open, mode, selected, openCreate, openEdit, openDelete);
-    }
-  }, [open, mode, selected, openCreate, openEdit, openDelete, close]);
-  
+  const value = useMemo(
+    () => ({ open, mode, selected, openCreate, openEdit, openDelete, close }),
+    [open, mode, selected, openCreate, openEdit, openDelete, close],
+  );
+
   return (
     <ConceptsUiContext.Provider value={value}>
-        {children}
+      {children}
     </ConceptsUiContext.Provider>
-  )
+  );
 };
 
 export default ConceptsUiProvider;

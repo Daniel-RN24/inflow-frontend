@@ -1,6 +1,6 @@
 import { ApiError, apiRequest } from "@/lib/http/apiClient";
 
-export const listConcepts = async (page = 1, limit = 10) => {
+export const listConcepts = async ({page = 1, limit = 10}) => {
   const conceptos = await apiRequest(`/conceptos?page=${page}&limit=${limit}`);
 
   if (!conceptos.data) {

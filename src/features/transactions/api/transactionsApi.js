@@ -18,7 +18,7 @@ export async function filterTransactions(page = 1, limit = 10, filters) {
   if (filters.tipo && filters.tipo !== "todos") params.set("type", filters.tipo);
   if (filters.categoria) params.set("category", filters.categoria);
   if (filters.fechaDesde) params.set("fromDate", filters.fechaDesde);
-  if (filters.fechaHasta) params.set("untilDate", filters.fechaHasta)
+  if (filters.fechaHasta) params.set("untilDate", filters.fechaHasta);
   const data = await apiRequest(
     `/transacciones?${params.toString()}`
   )

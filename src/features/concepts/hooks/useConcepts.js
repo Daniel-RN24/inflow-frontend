@@ -6,7 +6,7 @@ export function useConcepts() {
 
   if (!context) {
     throw new Error(
-      "UseConcepts debe usarse dentro de un <TransactionsProvider>",
+      "UseConcepts debe usarse dentro de un <ConceptsProvider>",
     );
   }
 
