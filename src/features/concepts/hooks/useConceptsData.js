@@ -1,7 +1,7 @@
 import { use, useCallback, useEffect, useState } from "react";
 import * as conceptsApi from "@/features/concepts/api/conceptsApi";
 
-export function useConcepts() {
+export function useConceptsData() {
   const [concepts, setConcepts] = useState([]);
   const [meta, setMeta] = useState(null);
   const [page, setPage] = useState(1);
@@ -12,7 +12,7 @@ export function useConcepts() {
     setLoading(true);
     setError(null);
     try {
-      const response = await conceptsApi.listConcepts({ page, limit: 10 });
+      const response = await conceptsApi.listConcepts({ page: targetPage, limit: 10 });
       setConcepts(response.data ?? []);
       setMeta(response.meta ?? null);
     } catch (err) {

@@ -5,29 +5,30 @@ import { GuestRoute, ProtectedRoute } from "@/app/router/guards";
 import AuthLayout from "@/components/layout/AuthLayout";
 import PrivateLayout from "@/components/layout/PrivateLayout";
 import { TransactionsUiProvider } from "@/features/transactions/context/TransactionsUiProvider";
+import ConceptsUiProvider from "@/features/concepts/context/ConceptsUiProvider";
 
 const LoginPage = lazy(() => import("@/features/auth/pages/LoginPage"));
 const RegisterPage = lazy(() => import("@/features/auth/pages/RegisterPage"));
-const ForgotPasswordPage = lazy(() =>
-  import("@/features/auth/pages/ForgotPasswordPage"),
+const ForgotPasswordPage = lazy(
+  () => import("@/features/auth/pages/ForgotPasswordPage"),
 );
-const ResetPasswordPage = lazy(() =>
-  import("@/features/auth/pages/ResetPasswordPage"),
+const ResetPasswordPage = lazy(
+  () => import("@/features/auth/pages/ResetPasswordPage"),
 );
-const ConfirmAccountPage = lazy(() =>
-  import("@/features/auth/pages/ConfirmAccountPage"),
+const ConfirmAccountPage = lazy(
+  () => import("@/features/auth/pages/ConfirmAccountPage"),
 );
 const ProfilePage = lazy(() => import("@/features/auth/pages/ProfilePage"));
 
-const DashboardPage = lazy(() =>
-  import("@/features/dashboard/pages/DashboardPage"),
+const DashboardPage = lazy(
+  () => import("@/features/dashboard/pages/DashboardPage"),
 );
-const TransactionsPage = lazy(() =>
-  import("@/features/transactions/pages/TransactionsPage"),
+const TransactionsPage = lazy(
+  () => import("@/features/transactions/pages/TransactionsPage"),
 );
-const ConceptsPage = lazy(() => import("@/features/meta/pages/ConceptsPage"));
-const CategoriesPage = lazy(() =>
-  import("@/features/meta/pages/CategoriesPage"),
+const ConceptsPage = lazy(() => import("@/features/concepts/pages/ConceptsPage"))
+const CategoriesPage = lazy(
+  () => import("@/features/meta/pages/CategoriesPage"),
 );
 const AccountsPage = lazy(() => import("@/features/meta/pages/AccountsPage"));
 
@@ -62,7 +63,14 @@ export default function AppRouter() {
                 </TransactionsUiProvider>
               }
             />
-            <Route path="conceptos" element={<ConceptsPage />} />
+            <Route
+              path="conceptos"
+              element={
+                <ConceptsUiProvider>
+                  <ConceptsPage />
+                </ConceptsUiProvider>
+              }
+            />
             <Route path="categorias" element={<CategoriesPage />} />
             <Route path="cuentas" element={<AccountsPage />} />
             <Route path="perfil" element={<ProfilePage />} />
