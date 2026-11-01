@@ -11,14 +11,17 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Loader2 } from "lucide-react";
+import ConceptFormDialog from "../components/ConceptFormDialog";
 
 export default function ConceptsPage() {
   const { mode, selected, openEdit, openDelete, open } = useConcepts();
-  const { page, setPage, concepts, setConcepts, error, loading, meta } =
+  const { page, setPage, concepts, setConcepts, error, loading, meta, refresh } =
     useConceptsData();
   return (
     <main className="flex flex-1 flex-col p-6 sm:p-8">
       <HeaderConcept />
+
+      <ConceptFormDialog concept={mode === "edit" ? selected : null} onSaved={refresh} />
 
       {loading && concepts.length == 0 ? (
         <div className="flex min-h-[40vh] items-center justify-center">
@@ -35,13 +38,13 @@ export default function ConceptsPage() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {concepts.map((concept) => 
+            {concepts.map((concept) => (
               <TableRow key={concept.id}>
                 <TableCell>{concept.categorias.tipo}</TableCell>
                 <TableCell>{concept.nombre}</TableCell>
                 <TableCell>{concept.categorias.nombre}</TableCell>
               </TableRow>
-            )}
+            ))}
           </TableBody>
         </Table>
       )}

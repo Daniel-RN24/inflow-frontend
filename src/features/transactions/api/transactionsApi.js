@@ -69,16 +69,16 @@ export async function deleteTransaction(id) {
 }
 
 export async function listConcepts() {
-  const data = await apiRequest("/conceptos");
-  return data.results ?? [];
+  const response = await apiRequest("/conceptos");
+  return response.data ?? [];
 }
 
 export async function listAccounts() {
-  const data = await apiRequest("/cuentas");
-  return data.results ?? [];
+  const response = await apiRequest("/cuentas");
+  return response.data ?? [];
 }
 
 export async function listCategories(){
-  const data = await apiRequest("/categorias");
-  return data.results ?? [];
+  const response = await apiRequest("/categorias");
+  return response.data ?? [];
 }

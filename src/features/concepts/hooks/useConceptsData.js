@@ -7,6 +7,7 @@ export function useConceptsData() {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [reloadCount, setReloadCount] = useState(0);
 
   const loadList = useCallback(async (targetPage) => {
     setLoading(true);
@@ -24,7 +25,11 @@ export function useConceptsData() {
 
   useEffect(() => {
     loadList(page);
-  }, [loadList, page]);
+  }, [loadList, page, reloadCount]);
 
-  return { concepts, setConcepts, meta, page, setPage, loading, error };
+  const refresh = useCallback(() => {
+    setReloadCount((count) => count + 1)
+  }, [])
+
+  return { concepts, setConcepts, meta, page, setPage, loading, error, refresh };
 }

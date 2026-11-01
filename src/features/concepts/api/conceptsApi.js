@@ -24,7 +24,7 @@ export const filterConcepts = async (filters, page = 1, limit = 10) => {
   return conceptos;
 };
 
-export const createConcept = async ({ payload }) => {
+export const createConcept = async (payload) => {
   const data = await apiRequest("/conceptos", {
     method: "POST",
     body: payload,
