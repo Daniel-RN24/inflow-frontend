@@ -9,7 +9,7 @@ import TransactionRow from "@/features/transactions/components/TransactionRow";
 
 export default function TransactionTable({ transactions, onEdit, onDelete }) {
   return (
-    <div className="overflow-hidden rounded-xl border bg-card">
+    <div className="overflow-hidden rounded-t-xl border bg-card">
       <Table>
         <TableHeader>
           <TableRow className="bg-linear-to-r from-primary/10 via-muted/40 to-muted/40">

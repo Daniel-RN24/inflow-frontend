@@ -7,7 +7,7 @@ import FilterBar from "@/features/transactions/components/FilterBar";
 import SummaryCardsTransaction from "@/features/transactions/components/SummaryCardsTransaction";
 import TransactionTable from "@/features/transactions/components/TransactionTable";
 import TransactionCards from "@/features/transactions/components/TransactionCards";
-import PaginationFooter from "@/features/transactions/components/PaginationFooter";
+import PaginationFooter from "@/components/layout/PaginationFooter";
 import TransactionFormDialog from "@/features/transactions/components/TransactionFormDialog";
 import DeleteTransactionDialog from "@/features/transactions/components/DeleteTransactionDialog";
 
@@ -62,7 +62,7 @@ export default function TransactionsPage() {
               onEdit={openEdit}
               onDelete={openDelete}
             />
-            <PaginationFooter meta={meta} page={page} setPage={setPage} />
+            <PaginationFooter meta={meta} page={page} setPage={setPage} tabla={"Transacciones"}/>
           </div>
         </>
       )}

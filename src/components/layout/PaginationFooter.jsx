@@ -6,14 +6,14 @@ import {
   PaginationItem,
 } from "@/components/ui/pagination";
 
-export default function PaginationFooter({ meta, page, setPage }) {
+export default function PaginationFooter({ meta, page, setPage, tabla }) {
   if (!meta || meta.total === 0) return null;
 
   return (
     <div className="flex flex-col gap-4 rounded-b-xl border border-t-0 bg-card p-4 sm:flex-row sm:items-center sm:justify-between">
       <p className="text-sm text-muted-foreground">
         Mostrando {(page - 1) * 10 + 1}–{Math.min(page * 10, meta.total)} de{" "}
-        {meta.total} transacciones
+        {meta.total} {tabla}
       </p>
 
       <Pagination className="justify-start sm:justify-end">
