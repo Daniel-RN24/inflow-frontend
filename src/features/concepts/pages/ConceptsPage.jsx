@@ -13,6 +13,7 @@ import {
 import { Loader2 } from "lucide-react";
 import ConceptFormDialog from "../components/ConceptFormDialog";
 import PaginationFooter from "@/components/layout/PaginationFooter";
+import ConceptTable from "../components/ConceptTable";
 
 export default function ConceptsPage() {
   const { mode, selected, openEdit, openDelete, open } = useConcepts();
@@ -40,25 +41,7 @@ export default function ConceptsPage() {
           <Loader2 className="size-6 animate-spin text-primary" />
         </div>
       ) : (
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Tipo</TableHead>
-              <TableHead>Nombre</TableHead>
-              <TableHead>Categoria</TableHead>
-              <TableHead>Acciones</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {concepts.map((concept) => (
-              <TableRow key={concept.id}>
-                <TableCell>{concept.categorias.tipo}</TableCell>
-                <TableCell>{concept.nombre}</TableCell>
-                <TableCell>{concept.categorias.nombre}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        <ConceptTable concepts={concepts} />
       )}
       <PaginationFooter
         meta={meta}

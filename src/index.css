@@ -165,3 +165,10 @@
 @utility glow-primary {
   box-shadow: 0 8px 30px -6px color-mix(in oklch, var(--primary) 45%, transparent);
 }
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}

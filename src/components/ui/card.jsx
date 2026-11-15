@@ -1,6 +1,5 @@
 import * as React from "react"
-
-import { cn } from "@/lib/utils"
+import { cn } from "cn"
 
 function Card({
   className,
@@ -42,7 +41,7 @@ function CardTitle({
     <div
       data-slot="card-title"
       className={cn(
-        "font-heading bg-tertiary leading-snug font-medium group-data-[size=sm]/card:text-sm",
+        "font-heading text-base leading-snug font-medium group-data-[size=sm]/card:text-sm",
         className
       )}
       {...props} />

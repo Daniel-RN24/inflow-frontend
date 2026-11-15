@@ -5,7 +5,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useConcepts } from "../hooks/useConcepts";
-import { List, X } from "lucide-react";
+import { List, Loader2, X } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { listCategories } from "@/features/transactions/api/transactionsApi";
@@ -19,9 +19,13 @@ import Alerta from "@/components/shared/Alerta";
 import { createConcept, updateConcept } from "../api/conceptsApi";
 
 const ConceptForm = ({ concept, onCancel, onSaved }) => {
+  const { selected } = useConcepts();
+
   const [categorias, setCategorias] = useState([]);
-  const [nombre, setNombre] = useState("");
-  const [selectCategoria, setSelectCategoria] = useState(undefined);
+  const [nombre, setNombre] = useState(selected ? selected.nombre : "");
+  const [selectCategoria, setSelectCategoria] = useState(
+    concept ? selected.categorias_id : undefined,
+  );
   const [guardando, setGuardando] = useState(false);
   const [alerta, setAlerta] = useState({});
 
@@ -108,9 +112,13 @@ const ConceptForm = ({ concept, onCancel, onSaved }) => {
         >
           Cancelar
         </Button>
-        <Button className="cursor-pointer" type="submit">
-          {concept ? "Guardar cambios" : "Guardar concepto"}
-        </Button>
+        {guardando ? (
+          <Loader2 className="animate-spin" />
+        ) : (
+          <Button className="cursor-pointer" type="submit">
+            {concept ? "Guardar cambios" : "Guardar concepto"}
+          </Button>
+        )}
       </div>
     </form>
   );
